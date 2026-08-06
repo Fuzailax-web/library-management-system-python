@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+library.log
+books.json
+books.csv
+.DS_Store
