@@ -7,35 +7,35 @@ class Book:
         self.year = year
         self.status = "Available"
 
-def display(self):
-    print("\n========== Book Details ==========")
-    print(f"Book ID   : {self.book_id}")
-    print(f"Title     : {self.title}")
-    print(f"Author    : {self.author}")
-    print(f"Category  : {self.category}")
-    print(f"Year      : {self.year}")
-    print(f"Status    : {self.status}")
-    print("==================================")
+    def display(self):
+        print("\n========== Book Details ==========")
+        print(f"Book ID   : {self.book_id}")
+        print(f"Title     : {self.title}")
+        print(f"Author    : {self.author}")
+        print(f"Category  : {self.category}")
+        print(f"Year      : {self.year}")
+        print(f"Status    : {self.status}")
+        print("==================================")
 
-def to_dict(self):
-    return {
-        "book_id": self.book_id,
-        "title": self.title,
-        "author": self.author,
-        "category": self.category,
-        "year": self.year,
-        "status": self.status
-    }
-@classmethod
-def from_dict(cls, data):
-    book = cls(
-        data["book_id"],
-        data["title"],
-        data["author"],
-        data["category"],
-        data["year"]
-    )
+    def to_dict(self):
+        return {
+            "book_id": self.book_id,
+            "title": self.title,
+            "author": self.author,
+            "category": self.category,
+            "year": self.year,
+            "status": self.status
+        }
 
-    book.status = data["status"]
+    @classmethod
+    def from_dict(cls, data):
+        book = cls(
+            data["book_id"],
+            data["title"],
+            data["author"],
+            data["category"],
+            data["year"]
+        )
 
-    return book
+        book.status = data["status"]
+        return book
