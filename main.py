@@ -195,6 +195,68 @@ def delete_book():
 
     print("\n❌ Book Not Found!")
 
+def issue_book():
+ try:
+     book_id = int(input("ENter Book ID to issue: "))
+ except ValueError:
+     print("\n❌Book ID must be a number!")
+     return
+
+ for book in books:
+   if book.book_id == book_id:
+       print("\n========== Book Details ==========")
+       book.display()
+       if book.status == "Issued":
+          print("\n❌ Book is already issued!")
+          return
+
+       book.status = "Issued"
+
+       save_books(books)
+
+       logger.info(
+        f"Book Issued: {book.title} (ID: {book.book_id})")
+                
+
+       print("\n✅ Book Issued Successfully!")
+       return
+
+print("\n❌ Book Not Found!")
+
+def return_book():
+    try:
+        book_id = int(input("Enter Book ID to return: "))
+    except ValueError:
+        print("\n❌ Book ID must be a number!")
+        return
+
+    for book in books:
+        if book.book_id == book_id:
+            print("\n========== Book Details ==========")
+            book.display()
+
+            if book.status == "Available":
+                print("\n❌ Book is already available!")
+                return
+
+            book.status = "Available"
+
+            save_books(books)
+
+            logger.info(
+                f"Book Returned: {book.title} (ID: {book.book_id})"
+            )
+
+            print("\n✅ Book Returned Successfully!")
+            return
+
+    print("\n❌ Book Not Found!")
+          
+
+
+
+
+
 
 while True:
     print("\n========== Library Management System ==========")
@@ -225,6 +287,12 @@ while True:
 
     elif choice == "5":
         delete_book()
+
+    elif choice == "6":
+        issue_book()
+
+    elif choice == "7":
+        return_book()
 
     elif choice == "10":
         print("\nThank you for using Library Management System!")
