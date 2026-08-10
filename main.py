@@ -1,5 +1,5 @@
 from auth import login
-from database import save_books, load_books
+from database import save_books, load_books, export_to_csv
 from book import Book
 from logger import logger
 
@@ -251,6 +251,22 @@ def return_book():
             return
 
     print("\n❌ Book Not Found!")
+
+def statistics():
+    total_books = len(books)
+    available_books = 0
+    issued_books = 0
+
+    for book in books:
+        if book.status == "Available":
+            available_books += 1
+        elif book.status == "Issued":
+            issued_books += 1
+
+    print("\n========== Library Statistics ==========")
+    print(f"Total Books     : {total_books}")
+    print(f"Available Books : {available_books}")
+    print(f"Issued Books    : {issued_books}")
           
 
 
@@ -293,6 +309,12 @@ while True:
 
     elif choice == "7":
         return_book()
+
+    elif choice == "8":
+        statistics()
+
+    elif choice == "9":
+         export_to_csv()
 
     elif choice == "10":
         print("\nThank you for using Library Management System!")
